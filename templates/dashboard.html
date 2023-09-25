@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% block js %}
+    <script src="{{ url_for('static', filename='js/verifyLink.js') }}"></script>
+{% endblock%}
+{% block title %}
+    Dashboard
+{% endblock %}
+{% block content %}
+  <div class="content" style="display: block">
+    <h2>- Welcome in your dashboard -</h2>
+    <fieldset>
+      <legend>Account</legend>
+      <a href="{{url_for('logout')}}"><div class="btn">Logout</div></a><br>
+      <a href="{{ url_for('edituser') }}"><div class="btn">Edit account</div></a>
+    </fieldset>
+    <br>
+    <fieldset>
+      <legend>Create Link</legend>
+      <form action="" method="post">
+          {{ link_form.hidden_tag() }} <br>
+          {{ link_form.name }} <br>
+          {{ link_form.app_id }} <br>
+          {{ link_form.url_after }} <br>
+          {% if link_form.errors %}
+          <div class="error">
+              <ul>
+                  {% for field, errors in link_form.errors.items() %}
+                  {% for error in errors %}
+                  <li>{{ error }}</li>
+                  {% endfor %}
+                  {% endfor %}
+              </ul>
+          </div>
+          {% endif %} <br>
+          {{ link_form.submit }}
+      </form>
+    </fieldset>
+    <br>
+    <fieldset>
+      <legend>Your links</legend>
+      {% if links %}
+      <div class="">
+          <table>
+              {% for link in links %}
+              <tr>
+                  <th>{{ link.name }}</th>
+                  <th><button onclick="navigator.clipboard.writeText('{{ get_verify_link(link.id) }}')">COPY</button></th>
+                  <th><button id="verifyButton_{{ link.id }}" onclick="verifyLink({{ link.id }}, '{{ link.app_id }}', '{{ get_redir(link.id)}}')">VERIFY</button></th>
+                  <th><a href="{{ url_for('edit_link', link_id=link.id) }}">EDIT</a></th>
+                  <th><a href="{{ url_for('delete_link', link_id=link.id) }}">DELETE</a></th>
+              </tr>
+              {% endfor %}
+          </table>
+      </div>
+      {% else %}
+      <h3 style="color: red">You don't have any links!</h3>
+      {% endif %}
+    </fieldset>
+    <br>
+    <fieldset>
+      <legend>Accounts</legend>
+      <form action="" method="post">
+          {{ import_acc_form.hidden_tag() }} <br>
+          {{ import_acc_form.app_id }} <br>
+          {{ import_acc_form.refresh_token }} <br>
+          {{ import_acc_form.client_secret }} <br>
+          {% if import_acc_form.errors %}
+          <div class="error">
+              <ul>
+                  {% for field, errors in import_acc_form.errors.items() %}
+                  {% for error in errors %}
+                  <li>{{ error }}</li>
+                  {% endfor %}
+                  {% endfor %}
+              </ul>
+          </div>
+          {% endif %} <br>
+          {{ import_acc_form.submit }}
+      </form>
+      <br>
+      <hr style="border: 1px solid gray;">
+      <br>
+      {% if accs %}
+      <h3>Your accounts</h3>
+      <br>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>UUID</th>
+          <th>Options</th>
+        </tr>
+        {% for acc in accs %}
+        <tr>
+            {% if acc.err %}
+            <td>ERROR: {{ acc.err }}</td>
+            {% else %}
+            <th><a class="accountinfo">{{ acc.name }}</a></th>
+            <th><a class="accountinfo">{{ acc.uuid }}</a></th>
+            {% endif %}
+            <td>&nbsp;<a href="{{ url_for('delete_acc', acc_id=acc.id) }}" class="accountinfo" style="color: darkred; font-weight: bold;">DELETE</a>&nbsp;&nbsp;<a href="{{ url_for('acc_info', acc_id=acc.id) }}" class="accountinfo" style="color: white; font-weight: bold;">DETAILS</a>&nbsp;</td>
+            <td></td>
+        </tr>
+        {% endfor %}
+      </table>
+      {% else %}
+      <h3 style="color: red">You don't have any accounts!</h3>
+      {% endif %}
+    </fieldset>
+    <br>
+    <fieldset>
+      <legend>Tracks</legend>
+      {% if tracks %}
+      <a href="{{ url_for('delete_all_tracks') }}"><div class="btn">CLEAR ALL TRACKS</div></a>
+      <br>
+      <table>
+          {% for track in tracks %}
+          <tr>
+              <th>{{ track.ip }}</th>
+              <th>{{ track.ua }}</th>
+              <th>{{ track.link_tracks.name }}</th>
+              <th>{{ datetime.datetime.fromtimestamp(track.time).strftime('%H:%M:%S %d.%m.%Y') }}</th>
+          </tr>
+          {% endfor %}
+      </table>
+      {% else %}
+      <h3 style="color: red">You don't have any tracks!</h3>
+      {% endif %}
+    </fieldset>
+
+    <div style="margin: 200px;"></div>
+
+  </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}
+    Edit User
+{% endblock %}
+{% block content %}
+
+  <div class="content">
+    <form action="" method="post">
+        {{ generate_new_token.hidden_tag() }}
+        {{ generate_new_token.submit }}
+    </form>
+    <br>
+    <button onclick="navigator.clipboard.writeText('{{ current_user.api_token }}')">Copy your api token</button><br><br>
+    <a href="{{ url_for('dashboard') }}" class="link">Back</a>
+  </div>
+
+{% endblock %}

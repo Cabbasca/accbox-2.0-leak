@@ -1,0 +1,163 @@
+html {
+  margin: 0px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000000;
+    background-image: url("");
+    color: #fff;
+}
+
+table {
+    margin: auto;
+    border: 1px solid;
+    border-collapse: collapse;
+}
+
+th {
+    border: 1px solid;
+    border-collapse: collapse;
+    padding: 0.2em 0.4em;
+}
+
+tr {
+    border-collapse: collapse;
+}
+
+hr {
+  border: 1px solid #eb4034;
+}
+
+.accountinfo {
+  color: white;
+}
+
+a {
+  text-decoration: none;
+}
+
+.link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.link:visited {
+  color: inherit;
+}
+
+.btn {
+  width: fit-content;
+  text-decoration: none;
+  color: white;
+  margin: auto;
+  padding: 5px;
+  background-color: #992c25;
+  cursor: pointer;
+  /* Just WHYYYY does every damn browser need to have its own sh*t */
+    -webkit-transition: background-color 100ms ease-in;
+       -moz-transition: background-color 100ms ease-in;
+        -ms-transition: background-color 100ms ease-in;
+            transition: background-color 100ms ease-in;
+}
+
+.btn:hover {
+  background-color: #eb4034;
+}
+
+.canvas {
+  background-color: rgba(0, 0, 0, 0)
+}
+
+.content {
+  color: #17a2b8;
+  margin: auto;
+  text-align: center;
+}
+
+input[type="text"], input[type="password"] {
+  font-size: 20px;
+  color: white;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid red;
+}
+
+input[type="submit"], button {
+  background-color: transparent;
+  cursor: pointer;
+  border: 1px solid gray;
+  border-radius: 2px;
+  padding: 10px;
+  color: white;
+}
+
+fieldset {
+  width: 80%;
+  margin: auto;
+}
+
+legend {
+  color: white;
+  padding: 0.2em 0.8em;
+}
+
+.bf {
+  font-size: 20px;
+}
+
+.flash-message {
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+}
+
+.flash-success {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.flash-error {
+    background-color: #F44336;
+    color: white;
+}
+
+.flash-info {
+    background-color: #2196F3;
+    color: white;
+}
+
+.flash-warning {
+    background-color: #FFC107;
+    color: black;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active{
+  -webkit-box-shadow: inset 0 0 80px 80px rgba(0, 0, 0, 1); !important;
+  -webkit-text-fill-color: white !important;
+  caret-color: white !important;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+::-webkit-scrollbar-track {
+  background: #222;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #666;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

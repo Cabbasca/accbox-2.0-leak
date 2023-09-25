@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block js %}
+<script src="{{ url_for('static', filename='js/namemc.js') }}"></script>
+{% endblock %}
+{% block title %}
+More Account info
+{% endblock %}
+{% block content %}
+  <div class="content">
+    <h1>External Account Info Sites</h1>
+    {% if acc.name %}
+    <a href="https://namemc.com/{{ acc.uuid }}">namemc</a><br>
+    <a href="https://sky.shiiyu.moe/stats/{{ acc.name }}">Skycrypt</a><br>
+    {% endif %}
+    <h1>Interact with account</h1>
+    <button id="namemcButton" onclick="namemc({{ acc.id }})">get namemc link</button>
+    <h2>Rename</h2>
+    <form action="" method="post">
+        {{ rename_form.hidden_tag() }}
+        {{ rename_form.name }}
+        {{ rename_form.submit }}
+        {% if rename_form.errors %}
+        <div class="error">
+            <ul>
+                {% for field, errors in rename_form.errors.items() %}
+                {% for error in errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %} <br>
+    </form>
+    <h1>Other info</h1>
+    {% if acc.access_token %}
+    <h2>Accses token</h2>
+    <code>{{ acc.access_token }}</code>
+    {% endif %}
+    {% if acc.ip %}
+    <h2>Ip</h2>
+    <p>{{ acc.ip }}</p>
+    {% endif %}
+    {% if acc.ua %}
+    <h2>User Agent</h2>
+    <p>{{ acc.ua }}</p>
+    {% endif %}
+    {% if acc.refresh_token %}
+    <h2>Refresh Token</h2>
+    <code>{{ acc.refresh_token }}</code>
+    {% endif %}
+    {% if acc.app_id %}
+    <h2>App ID</h2>
+    <p>{{ acc.app_id }}</p>
+    {% endif %}
+    {% if acc.client_secret %}
+    <h2>client secret</h2>
+    <p>{{ acc.client_secret }}</p>
+    {% endif %}
+  </div>
+{% endblock %}

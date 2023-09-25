@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}
+    Acc Box 2.0: Dein Eintrittstor zur Sicherheit
+{% endblock %}
+{% block content %}
+    <div class="content">
+      <h1>Account Box 2.0: Dein Eintrittstor zur Sicherheit</h1>
+      <hr><br>
+      <a href="{{ url_for('login') }}" class="bf"><div class="btn">Login Page</div></a><br>
+      <a href="{{ url_for('register') }}" class="bf"><div class="btn">Register Page</div></a><br>
+    </div>
+{% endblock %}

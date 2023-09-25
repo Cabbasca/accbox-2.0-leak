@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block js %}{% endblock %}
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <canvas id="canvas" width="100%" height="100%" style="position: fixed; left: 0%; z-index: -1"></canvas>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="flash-message flash-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+    <script src="/static/js/canvas.js"></script> 
+    <!-- static/js/canvas.js to /static/js/canvas.js this will fix however this:
+         127.0.0.1 - - [23/Sep/2023 15:58:49] "GET /dashboard/acc/10/static/js/canvas.js HTTP/1.1" 404 -
+         happend i think -->
+</body>
+</html>
