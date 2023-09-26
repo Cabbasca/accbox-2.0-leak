@@ -3,7 +3,7 @@
 
 ## Install 
 
-run pip3 install -r reqirements.txt
+run pip3 install -r requirements.txt
 
 make a folder called instance
 
